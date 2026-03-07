@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('m_user', function (Blueprint $table) {
-            $table->id();
+            $table->id('user_id');
+            $table->unsignedBigInteger('level_id');
+
+            $table->string('username',50)->unique();
+            $table->string('nama',100);
+            $table->string('password');
+
             $table->timestamps();
+
+            $table->foreign('level_id')->references('level_id')->on('m_level');
         });
     }
 
